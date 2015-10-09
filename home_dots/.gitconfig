@@ -1,0 +1,11 @@
+[user]
+	name = Irakli Janiashvili
+	email = irakli.janiashvili@gmail.com
+[github]
+	user = irakli-janiashvili
+[color]
+	ui = auto
+[core]
+	excludesfile = /Users/jani/.gitignore_global
+[push]
+	default = simple
