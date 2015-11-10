@@ -7,3 +7,6 @@ source $RC/env/aliases.sh
 source $RC/zsh/init-omz.sh
 
 source $RC/env/extra.sh
+
+# TAT TAT TAAAAAA, let's go to tmux
+tat
