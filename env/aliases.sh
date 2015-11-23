@@ -1,5 +1,4 @@
-alias r="source ~/.zshrc"
-alias s="supervisor"
+alias reload="source ~/.zshrc"
 alias serve="python3.5 -m http.server"
 alias gst="git status -sb"
 alias fuck='$(thefuck $(fc -ln -1))'
