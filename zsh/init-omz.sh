@@ -4,7 +4,7 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$RC/zsh
 
 # theme config
-SHELL_CHAR='%F{green}❱%f'
+SHELL_CHAR='%F{green} ❖%f'
 
 GIT_CHAR=""
 ZSH_THEME="jani"
