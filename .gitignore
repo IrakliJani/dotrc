@@ -1,2 +1,4 @@
 .DS_Store
 home_dots/.zsh_history
+nvim/plugged
+nvim/.netrwhist
