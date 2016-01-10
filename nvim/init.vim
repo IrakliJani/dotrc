@@ -14,9 +14,10 @@ Plug 'isRuslan/vim-es6'
 Plug 'kchmck/vim-coffee-script'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-obsession'
-Plug 'unblevable/quick-scope' 
+Plug 'unblevable/quick-scope'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 " -plug
@@ -70,7 +71,7 @@ au WinEnter * :wincmd =
 " Set es6 to javascript
 au BufRead,BufNewFile *.es6 setfiletype javascript
 
-nmap <Leader>r :source ~/.nvimrc<cr>:echomsg "~/.nvimrc reloaded"<cr>
+nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<cr>
 nnoremap <C-f> :Ack
 
 nnoremap <Leader>y "+y
