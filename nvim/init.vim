@@ -20,6 +20,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdtree'
 "Plug 'scrooloose/syntastic'
 Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-vinegar'
+Plug 'tmux-plugins/vim-tmux'
 call plug#end()
 
 " -plug
@@ -107,23 +109,25 @@ nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
 nnoremap <C-f> :Unite grep:.<CR>
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 
+let g:unite_source_rec_max_cache_files=5000
 let g:unite_source_history_yank_enable = 1
-let g:neomru#file_mru_limit = 100
 
 call unite#filters#converter_default#use(['converter_relative_word'])
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_length'])
+"call unite#filters#sorter_default#use(['sorter_length'])
 
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts =
       \ '-i --vimgrep --hidden --ignore ''.git'''
 let g:unite_source_grep_recursive_opt = ''
-let g:unite_split_rule = "botright"
+
+"let g:unite_split_rule = "botright"
 let g:default_context = {
     \ 'winheight' : 15,
     \ 'update_time' : 100,
-    \ 'prompt' : '>>> ',
+    \ 'prompt' : '» ',
     \ 'enable_short_source_names' : 0,
     \ 'marked_icon' : '✓',
     \ 'ignorecase' : 1,
@@ -140,6 +144,8 @@ call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
     \ 'log/',
     \ 'public/assets/',
     \ 'node_modules/',
+    \ 'vendors/',
+    \ 'plugins/',
     \ 'bower_components/',
     \ ], '\|'))
 " UNITE }}}
