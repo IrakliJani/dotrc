@@ -8,7 +8,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'elixir-lang/vim-elixir'
 Plug 'isRuslan/vim-es6'
@@ -20,7 +20,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdtree'
 "Plug 'scrooloose/syntastic'
 Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-vinegar'
 Plug 'tmux-plugins/vim-tmux'
 call plug#end()
 
@@ -39,13 +38,10 @@ colorscheme Tomorrow\-Night
 autocmd VimResized * :wincmd =
 
 set shortmess+=I
-
 set tabstop=2 shiftwidth=2 expandtab autoindent smartindent
 
-set cursorline
-set lazyredraw
-
-"set scrolloff=6
+"set cursorline
+"set lazyredraw
 
 set nowrap
 
@@ -156,9 +152,9 @@ set noswapfile
 
 set mouse=
 
-set textwidth=80
-set colorcolumn=+1
-:hi ColorColumn ctermbg=235
+"set textwidth=80
+"set colorcolumn=+1
+":hi ColorColumn ctermbg=235
 
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
