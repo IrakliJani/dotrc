@@ -1,26 +1,20 @@
 " plug
 
 call plug#begin("~/.rc/nvim/plugged")
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-"Plug 'airblade/vim-gitgutter'
+Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
 Plug 'scrooloose/nerdcommenter'
-Plug 'elixir-lang/vim-elixir'
-Plug 'isRuslan/vim-es6'
+Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'kchmck/vim-coffee-script'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-obsession'
 Plug 'unblevable/quick-scope'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdtree'
-"Plug 'scrooloose/syntastic'
-Plug 'mhinz/vim-startify'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " -plug
@@ -40,8 +34,8 @@ autocmd VimResized * :wincmd =
 set shortmess+=I
 set tabstop=2 shiftwidth=2 expandtab autoindent smartindent
 
-"set cursorline
-"set lazyredraw
+set cursorline
+set lazyredraw
 
 set nowrap
 
@@ -81,10 +75,8 @@ vnoremap <Leader>p "+gP
 " tabs
 nnoremap th :tabprev  <CR>
 nnoremap tl :tabnext  <CR>
-"--
 nnoremap tj :tabfirst <CR>
 nnoremap tk :tablast  <CR>
-"--
 nnoremap td :tabclose <CR>
 nnoremap tt :tabnew   <CR>
 
@@ -95,56 +87,11 @@ if has('nvim')
 endif
 
 " hidden chars
-nmap <leader>l :set list!<CR>
+nmap <leader>; :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
-" {{{ UNITE
-nnoremap <C-o> :Unite file<CR>
-nnoremap <C-b> :Unite buffer<CR>
-nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
-nnoremap <C-f> :Unite grep:.<CR>
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-let g:unite_source_rec_max_cache_files=5000
-let g:unite_source_history_yank_enable = 1
-
-call unite#filters#converter_default#use(['converter_relative_word'])
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#filters#sorter_default#use(['sorter_length'])
-
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts =
-      \ '-i --vimgrep --hidden --ignore ''.git'''
-let g:unite_source_grep_recursive_opt = ''
-
-"let g:unite_split_rule = "botright"
-let g:default_context = {
-    \ 'winheight' : 15,
-    \ 'update_time' : 100,
-    \ 'prompt' : '» ',
-    \ 'enable_short_source_names' : 0,
-    \ 'marked_icon' : '✓',
-    \ 'ignorecase' : 1,
-    \ 'smartcase' : 1,
-    \ }
-
-call unite#custom#profile('default', 'context', default_context)
-
-" custom ignore pattern
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-    \ 'ignore_pattern', join([
-    \ '\.git/',
-    \ 'tmp/',
-    \ 'log/',
-    \ 'public/assets/',
-    \ 'node_modules/',
-    \ 'vendors/',
-    \ 'plugins/',
-    \ 'bower_components/',
-    \ ], '\|'))
-" UNITE }}}
+" clear
+nmap <leader>l :nohlsearch<CR>
 
 set nobackup
 set nowb
@@ -152,23 +99,17 @@ set noswapfile
 
 set mouse=
 
-"set textwidth=80
-"set colorcolumn=+1
-":hi ColorColumn ctermbg=235
+set textwidth=80
+set colorcolumn=+1
+hi ColorColumn ctermbg=235
 
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --hidden\ --nocolor
 
-" syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_javascript_checkers = ['standard']
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  let g:ctrlp_use_caching = 0
+endif

@@ -1,0 +1,8 @@
+.git/
+tmp/
+log/
+vendors/
+plugins/
+public/assets/
+node_modules/
+bower_components/
