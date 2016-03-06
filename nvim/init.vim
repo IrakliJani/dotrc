@@ -15,6 +15,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " here starts THE mess...
