@@ -18,20 +18,12 @@ let s:blue = "81a2be"
 let s:purple = "b294bb"
 let s:window = "4d5057"
 
-" Console 256 Colours
-if !has("gui_running")
-	let s:background = "303030"
-	let s:window = "5e5e5e"
-	let s:line = "3a3a3a"
-	let s:selection = "585858"
-end
-
 hi clear
 syntax reset
 
 let g:colors_name = "Tomorrow-Night"
 
-if has("gui_running") || &t_Co == 88 || &t_Co == 256
+if has("gui_running") || &t_Co == 88 || &t_Co == 256 || $NVIM_TUI_ENABLE_TRUE_COLOR
 	" Returns an approximate grey index for the given grey level
 	fun <SID>grey_number(x)
 		if &t_Co == 88

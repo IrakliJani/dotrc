@@ -16,14 +16,18 @@ Plug 'gabesoft/vim-ags'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'othree/yajs.vim'
 call plug#end()
 
 " here starts THE mess...
 
-filetype plugin indent on
+let mapleader = "\<Space>"
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on
 colorscheme Tomorrow\-Night
-let mapleader = "\<Space>"
+
+filetype plugin indent on
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
@@ -50,7 +54,7 @@ set number
 au WinEnter * :setlocal number cursorline
 au WinLeave * :setlocal nonumber nocursorline
 
-hi statusline ctermbg=green
+" Setup statusline
 set statusline=in\ %f\ %m\ %y
 set statusline+=%=at\ %l:%c\ of\ %L
 
