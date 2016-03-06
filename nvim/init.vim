@@ -1,5 +1,3 @@
-" plug
-
 call plug#begin("~/.rc/nvim/plugged")
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -10,23 +8,21 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'kchmck/vim-coffee-script'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'unblevable/quick-scope'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'gabesoft/vim-ags'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler.vim'
 call plug#end()
-
-" -plug
 
 " here starts THE mess...
 
 filetype plugin indent on
-
-let mapleader = "\<Space>"
-
 syntax on
 colorscheme Tomorrow\-Night
+let mapleader = "\<Space>"
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
@@ -39,8 +35,7 @@ set lazyredraw
 
 set nowrap
 
-set splitbelow
-set splitright
+set splitbelow splitright
 
 set autoread
 
@@ -80,7 +75,6 @@ nnoremap tk :tablast  <CR>
 nnoremap td :tabclose <CR>
 nnoremap tt :tabnew   <CR>
 
-
 " Fix tmux navigation
 if has('nvim')
   nmap <bs> :<c-u>TmuxNavigateLeft <CR>
@@ -92,6 +86,9 @@ set listchars=tab:▸\ ,eol:¬
 
 " clear
 nmap <leader>l :nohlsearch<CR>
+
+" VimFiler
+nmap <leader>t :VimFilerExplorer<CR>
 
 set nobackup
 set nowb
@@ -113,3 +110,5 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+let g:vimfiler_as_default_explorer = 1
