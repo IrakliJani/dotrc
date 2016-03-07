@@ -1,4 +1,5 @@
 call plug#begin("~/.rc/nvim/plugged")
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'mattn/webapi-vim'
@@ -53,10 +54,6 @@ set number
 " on number change
 au WinEnter * :setlocal number cursorline
 au WinLeave * :setlocal nonumber nocursorline
-
-" Setup statusline
-set statusline=in\ %f\ %m\ %y
-set statusline+=%=at\ %l:%c\ of\ %L
 
 " Automatically resize vertical splits.
 au WinEnter * :set winfixheight
