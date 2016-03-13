@@ -13,12 +13,16 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mkitt/tabline.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
+Plug 'simeji/winresizer'
+Plug 't9md/vim-choosewin'
+Plug 'Shougo/deoplete.nvim'
 call plug#end()
 
 " here starts THE mess...
@@ -71,6 +75,11 @@ vnoremap <Leader>y "+y
 nnoremap <Leader>p "+gP
 vnoremap <Leader>p "+gP
 
+" ChooseWin
+
+" invoke with '-'
+nmap  -  <Plug>(choosewin)
+
 " tabs
 nnoremap th :tabprev  <CR>
 nnoremap tl :tabnext  <CR>
@@ -115,8 +124,10 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+" VimFiler
 let g:vimfiler_as_default_explorer = 1
 
+" Lightline
 let g:lightline = {
   \ 'colorscheme': 'jellybeans',
   \ 'active': {
@@ -134,3 +145,15 @@ let g:lightline = {
   \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
   \ },
   \ }
+
+" WinResizer
+let g:winresizer_vert_resize  = 1
+let g:winresizer_horiz_resize = 1
+
+autocmd FileType vimfiler call s:vimfiler_my_settings()
+function! s:vimfiler_my_settings() abort "{{{
+  nnoremap <silent><buffer><expr> gt vimfiler#do_action('tabopen')
+  nmap <buffer> <Tab> <Plug>(vimfiler_switch_to_other_window)
+endfunction"}}}
+
+let g:deoplete#enable_at_startup = 1
