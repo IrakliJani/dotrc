@@ -1,5 +1,6 @@
 call plug#begin("~/.rc/nvim/plugged")
 Plug 'tpope/vim-fugitive'
+Plug 'cohama/agit.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'mattn/webapi-vim'
