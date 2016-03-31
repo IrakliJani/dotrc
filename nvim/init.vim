@@ -18,12 +18,12 @@ Plug 'mkitt/tabline.vim'
 Plug 'gabesoft/vim-ags'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'simeji/winresizer'
 Plug 't9md/vim-choosewin'
 Plug 'Shougo/deoplete.nvim'
+Plug 'Raimondi/delimitMate' "Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " here starts THE mess...
@@ -52,15 +52,15 @@ set splitbelow splitright
 
 set autoread
 
-" Keymap->VisualIndent
-vnoremap > > gv
-vnoremap < < gv
+" Re-select visual block after indenting + tab key will do the same
+vnoremap <Tab>   > gv
+vnoremap <S-Tab> < gv
+vnoremap >       > gv
+vnoremap <       < gv
 
-set number
-
-" on number change
-au WinEnter * :setlocal number cursorline
-au WinLeave * :setlocal nonumber nocursorline
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " Automatically resize vertical splits.
 au WinEnter * :set winfixheight
@@ -88,6 +88,10 @@ nnoremap tj :tabfirst <CR>
 nnoremap tk :tablast  <CR>
 nnoremap td :tabclose <CR>
 nnoremap tt :tabnew   <CR>
+
+" Keep search matches in the middle of the screen
+nnoremap n nzz
+nnoremap N Nzz
 
 " Fix tmux navigation
 if has('nvim')
