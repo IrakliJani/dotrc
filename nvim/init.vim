@@ -24,6 +24,8 @@ Plug 'simeji/winresizer'
 Plug 't9md/vim-choosewin'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Raimondi/delimitMate' "Plug 'jiangmiao/auto-pairs'
+Plug 'w0ng/vim-hybrid'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 " here starts THE mess...
@@ -33,7 +35,9 @@ let mapleader = "\<Space>"
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set regexpengine=1
 syntax on
-colorscheme Jellybeans
+"colorscheme Jellybeans
+set background=dark
+colorscheme hybrid
 
 filetype plugin indent on
 
@@ -44,13 +48,13 @@ set shortmess+=I
 set tabstop=2 shiftwidth=2 expandtab autoindent smartindent
 
 set cursorline
-set lazyredraw
 
 set nowrap
 
 set splitbelow splitright
 
 set autoread
+set lazyredraw
 
 " Re-select visual block after indenting + tab key will do the same
 vnoremap <Tab>   > gv
@@ -107,6 +111,12 @@ nmap <leader>l :nohlsearch<CR>
 
 " VimFiler
 nmap <leader>t :VimFilerExplorer<CR>
+
+" indentation lines toggle
+nmap <leader>i :IndentLinesToggle<CR><Esc>
+
+" indent lines disabled by default
+let g:indentLine_enabled = 0
 
 set nobackup
 set nowb
