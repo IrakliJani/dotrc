@@ -1,4 +1,5 @@
-call plug#begin("~/.rc/nvim/plugged") " {{{
+" {{{ Plug
+call plug#begin("~/.rc/nvim/plugged") 
 Plug 'tpope/vim-fugitive'
 Plug 'cohama/agit.vim'
 Plug 'itchyny/lightline.vim'
@@ -26,10 +27,9 @@ Plug 'Raimondi/delimitMate' "Plug 'jiangmiao/auto-pairs'
 Plug 'w0ng/vim-hybrid'
 Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-sandwich'
-call plug#end() " }}}
-
-" here starts THE mess...
-
+call plug#end()
+" }}}
+" {{{ Sets
 set background=dark
 set shortmess+=I
 set tabstop=2 shiftwidth=2 expandtab autoindent smartindent
@@ -43,13 +43,15 @@ set nobackup
 set nowb
 set noswapfile
 set mouse=
-
+" }}}
+" {{{ General
 let mapleader = "\<Space>"
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 syntax on
 colorscheme hybrid
-
+" }}}
+" {{{ Events
 " Automatically rebalance windows on vim resize
 au VimResized * :wincmd =
 
@@ -59,7 +61,8 @@ au WinEnter * :wincmd =
 
 " Set es6 to javascript
 au BufRead,BufNewFile *.es6 setfiletype javascript
-
+" }}}
+" {{{ Mappings
 " Re-select visual block after indenting + tab key will do the same
 vnoremap <Tab>   > gv
 vnoremap <S-Tab> < gv
@@ -106,15 +109,16 @@ nmap <leader>t :VimFilerExplorer<CR>
 " Indentation lines toggle
 nmap <leader>i :IndentLinesToggle<CR><Esc>
 
+" Indent guide 80 
+nmap <leader>g :set textwidth=80 colorcolumn=+1<CR><Esc>
+hi ColorColumn ctermbg=235
+
 " Fix tmux navigation
 nmap <bs> :<c-u>TmuxNavigateLeft <CR>
-
+" }}}
+" {{{ Plugin Configs
 " Indent lines disabled by default
 let g:indentLine_enabled = 0
-
-"set textwidth=80
-"set colorcolumn=+1
-"hi ColorColumn ctermbg=235
 
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
@@ -160,5 +164,6 @@ function! s:vimfiler_my_settings() abort "{{{
 endfunction "}}}
 
 let g:deoplete#enable_at_startup = 1
+" }}}
 
 " vim: set foldmethod=marker:
