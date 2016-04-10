@@ -3,3 +3,6 @@ home_dots/.zsh_history
 nvim/plugged
 nvim/.netrwhist
 configstore/
+htop/
+.*~
+
