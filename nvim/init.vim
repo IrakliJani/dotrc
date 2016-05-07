@@ -1,6 +1,7 @@
 " {{{ Plug
 call plug#begin("~/.rc/nvim/plugged") 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'cohama/agit.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/webapi-vim'
@@ -15,20 +16,20 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mkitt/tabline.vim'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler.vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'simeji/winresizer'
 Plug 't9md/vim-choosewin'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler.vim'
 Plug 'Shougo/deoplete.nvim'
-Plug 'Raimondi/delimitMate' "Plug 'jiangmiao/auto-pairs'
-Plug 'w0ng/vim-hybrid'
+Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-sandwich'
 Plug 'justinmk/vim-sneak'
 Plug 'samuelsimoes/vim-jsx-utils'
 Plug 'dyng/ctrlsf.vim'
+Plug 'othree/es.next.syntax.vim'
 call plug#end()
 " }}}
 " {{{ Sets
@@ -50,11 +51,15 @@ set relativenumber
 " }}}
 " {{{ General
 let mapleader = "\<Space>"
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-syntax on
-colorscheme hybrid
-hi Normal guibg=none
+" Theme
+syntax enable
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colorscheme Tomorrow\-Night
+set background=dark
+
+"hi Normal guibg=none
+
 " }}}
 " {{{ Events
 " Automatically rebalance windows on vim resize
