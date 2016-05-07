@@ -30,6 +30,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'samuelsimoes/vim-jsx-utils'
 Plug 'dyng/ctrlsf.vim'
 Plug 'othree/es.next.syntax.vim'
+Plug 'othree/html5.vim'
+Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
 call plug#end()
 " }}}
 " {{{ Sets
@@ -48,6 +50,12 @@ set noswapfile
 set mouse=
 set number
 set relativenumber
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+set nojoinspaces
+set scrolloff=5
+set updatetime=1000
 " }}}
 " {{{ General
 let mapleader = "\<Space>"
@@ -152,7 +160,6 @@ endif
 
 " Lightline
 let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
