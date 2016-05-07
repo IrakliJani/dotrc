@@ -4,5 +4,6 @@ nvim/plugged
 nvim/.netrwhist
 configstore/
 htop/
+heroku/
 .*~
 

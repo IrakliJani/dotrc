@@ -15,7 +15,6 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mkitt/tabline.vim'
-Plug 'gabesoft/vim-ags'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'othree/yajs.vim'
@@ -27,6 +26,9 @@ Plug 'Raimondi/delimitMate' "Plug 'jiangmiao/auto-pairs'
 Plug 'w0ng/vim-hybrid'
 Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-sandwich'
+Plug 'justinmk/vim-sneak'
+Plug 'samuelsimoes/vim-jsx-utils'
+Plug 'dyng/ctrlsf.vim'
 call plug#end()
 " }}}
 " {{{ Sets
@@ -43,6 +45,8 @@ set nobackup
 set nowb
 set noswapfile
 set mouse=
+set number
+set relativenumber
 " }}}
 " {{{ General
 let mapleader = "\<Space>"
@@ -50,6 +54,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 syntax on
 colorscheme hybrid
+hi Normal guibg=none
 " }}}
 " {{{ Events
 " Automatically rebalance windows on vim resize
@@ -70,8 +75,8 @@ vnoremap >       > gv
 vnoremap <       < gv
 
 " Move visual block
-vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
 
 " Reload .vimrc
 nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<cr>
@@ -115,24 +120,30 @@ hi ColorColumn ctermbg=235
 
 " Fix tmux navigation
 nmap <bs> :<c-u>TmuxNavigateLeft <CR>
+
+nmap     <leader>f  <Plug>CtrlSFPrompt
+vmap     <leader>f  <Plug>CtrlSFVwordPath
+nnoremap <leader>tf :CtrlSFToggle<CR>
+inoremap <leader>tf <Esc>:CtrlSFToggle<CR>
+
 " }}}
 " {{{ Plugin Configs
+
 " Indent lines disabled by default
 let g:indentLine_enabled = 0
 
+" Gist
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 
+" CtrlP + Ag = <3
 if executable('ag')
   set grepprg=ag\ --nogroup\ --hidden\ --nocolor
 
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
   let g:ctrlp_use_caching = 0
 endif
-
-" VimFiler
-let g:vimfiler_as_default_explorer = 1
 
 " Lightline
 let g:lightline = {
@@ -157,13 +168,22 @@ let g:lightline = {
 let g:winresizer_vert_resize  = 1
 let g:winresizer_horiz_resize = 1
 
+" VimFiler
+let g:vimfiler_as_default_explorer = 1
 autocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings() abort "{{{
   nnoremap <silent><buffer><expr> gt vimfiler#do_action('tabopen')
   nmap <buffer> <Tab> <Plug>(vimfiler_switch_to_other_window)
 endfunction "}}}
 
+" Deoplete
 let g:deoplete#enable_at_startup = 1
+
+" JSX functions
+nnoremap <leader>ja :call JSXEncloseReturn()<CR>
+nnoremap <leader>ji :call JSXEachAttributeInLine()<CR>
+nnoremap <leader>je :call JSXExtractPartialPrompt()<CR>
+nnoremap vat :call JSXSelectTag()<CR>
 " }}}
 
 " vim: set foldmethod=marker:

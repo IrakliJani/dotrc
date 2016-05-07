@@ -1,9 +1,9 @@
-alias reload="source ~/.zshrc"
-alias serve="python3.5 -m http.server"
-alias gst="git status -sb"
+alias reload='source ~/.zshrc'
+alias serve='python3.5 -m http.server'
+alias gst='git status -sb'
 alias fuck='$(thefuck $(fc -ln -1))'
 alias irb='irb --simple-prompt'
-alias node='node --harmony_destructuring'
 alias vim='nvim'
 alias sl='ls'
 alias ag='ag -path-to-agignore=~/.agignore'
+alias gitclean='git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d'
