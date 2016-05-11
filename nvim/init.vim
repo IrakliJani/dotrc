@@ -32,10 +32,11 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'othree/html5.vim'
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
+Plug 'w0ng/vim-hybrid'
+Plug 'cocopon/lightline-hybrid.vim'
 call plug#end()
 " }}}
 " {{{ Sets
-set background=dark
 set shortmess+=I
 set tabstop=2 shiftwidth=2 expandtab autoindent smartindent
 set cursorline
@@ -63,8 +64,8 @@ let mapleader = "\<Space>"
 " Theme
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colorscheme Tomorrow\-Night
 set background=dark
+colorscheme hybrid
 
 "hi Normal guibg=none
 
@@ -160,6 +161,7 @@ endif
 
 " Lightline
 let g:lightline = {
+  \ 'colorscheme': 'hybrid',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
