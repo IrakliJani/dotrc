@@ -29,11 +29,11 @@ Plug 'machakann/vim-sandwich'
 Plug 'justinmk/vim-sneak'
 Plug 'samuelsimoes/vim-jsx-utils'
 Plug 'dyng/ctrlsf.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'othree/html5.vim'
-Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
-Plug 'w0ng/vim-hybrid'
-Plug 'cocopon/lightline-hybrid.vim'
+"Plug 'othree/es.next.syntax.vim'
+"Plug 'othree/html5.vim'
+"Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
+Plug 'evanmiller/nginx-vim-syntax'
+Plug 'unblevable/quick-scope'
 call plug#end()
 " }}}
 " {{{ Sets
@@ -57,6 +57,7 @@ set ttimeoutlen=10
 set nojoinspaces
 set scrolloff=5
 set updatetime=1000
+set clipboard=unnamed
 " }}}
 " {{{ General
 let mapleader = "\<Space>"
@@ -64,9 +65,7 @@ let mapleader = "\<Space>"
 " Theme
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set background=dark
-colorscheme hybrid
-
+colorscheme Tomorrow
 "hi Normal guibg=none
 
 " }}}
@@ -94,12 +93,6 @@ vnoremap J :m '>+1<CR>gv=gv
 
 " Reload .vimrc
 nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<cr>
-
-" Global copy/paste
-nnoremap <Leader>y "+y
-vnoremap <Leader>y "+y
-nnoremap <Leader>p "+gP
-vnoremap <Leader>p "+gP
 
 " Invoke with '-'
 nmap - <Plug>(choosewin)
@@ -161,7 +154,7 @@ endif
 
 " Lightline
 let g:lightline = {
-  \ 'colorscheme': 'hybrid',
+  \ 'colorscheme': 'Tomorrow',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
