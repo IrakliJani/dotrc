@@ -6,7 +6,7 @@ Plug 'cohama/agit.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
+"Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'kchmck/vim-coffee-script'
@@ -22,11 +22,11 @@ Plug 'simeji/winresizer'
 Plug 't9md/vim-choosewin'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
-Plug 'Shougo/deoplete.nvim'
 Plug 'Raimondi/delimitMate'
-Plug 'Yggdroot/indentLine'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-sandwich'
-Plug 'justinmk/vim-sneak'
+"Plug 'justinmk/vim-sneak'
 Plug 'samuelsimoes/vim-jsx-utils'
 Plug 'dyng/ctrlsf.vim'
 "Plug 'othree/es.next.syntax.vim'
@@ -131,7 +131,6 @@ nmap <bs> :<c-u>TmuxNavigateLeft <CR>
 nmap     <leader>f  <Plug>CtrlSFPrompt
 vmap     <leader>f  <Plug>CtrlSFVwordPath
 nnoremap <leader>tf :CtrlSFToggle<CR>
-inoremap <leader>tf <Esc>:CtrlSFToggle<CR>
 
 " }}}
 " {{{ Plugin Configs
@@ -184,7 +183,7 @@ function! s:vimfiler_my_settings() abort "{{{
 endfunction "}}}
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 " JSX functions
 nnoremap <leader>ja :call JSXEncloseReturn()<CR>
