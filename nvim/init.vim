@@ -65,7 +65,7 @@ let mapleader = "\<Space>"
 " Theme
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colorscheme Tomorrow
+colorscheme Tomorrow\-Night
 "hi Normal guibg=none
 
 " }}}
@@ -154,7 +154,7 @@ endif
 
 " Lightline
 let g:lightline = {
-  \ 'colorscheme': 'Tomorrow',
+  \ 'colorscheme': 'Tomorrow_Night',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -191,6 +191,20 @@ nnoremap <leader>ja :call JSXEncloseReturn()<CR>
 nnoremap <leader>ji :call JSXEachAttributeInLine()<CR>
 nnoremap <leader>je :call JSXExtractPartialPrompt()<CR>
 nnoremap vat :call JSXSelectTag()<CR>
+" }}}
+" Functions {{{
+
+fun! Light()
+  colorscheme Tomorrow
+endfunction
+
+fun! Dark()
+  colorscheme Tomorrow\-Night
+endfunction
+
+command! Light call Light()
+command! Dark call Dark()
+
 " }}}
 
 " vim: set foldmethod=marker:
