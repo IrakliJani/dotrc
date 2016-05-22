@@ -64,9 +64,9 @@ let mapleader = "\<Space>"
 
 " Theme
 syntax enable
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=2
 colorscheme Tomorrow\-Night
-"hi Normal guibg=none
+hi Normal guibg=none
 
 " }}}
 " {{{ Events
