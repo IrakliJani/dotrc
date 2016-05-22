@@ -125,9 +125,10 @@ nmap <leader>i :IndentLinesToggle<CR><Esc>
 nmap <leader>g :set textwidth=80 colorcolumn=+1<CR><Esc>
 hi ColorColumn ctermbg=235
 
-" Fix tmux navigation
-nmap <bs> :<c-u>TmuxNavigateLeft <CR>
+ "Fix tmux navigation
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
+" CtrlSF mappings
 nmap     <leader>f  <Plug>CtrlSFPrompt
 vmap     <leader>f  <Plug>CtrlSFVwordPath
 nnoremap <leader>tf :CtrlSFToggle<CR>
