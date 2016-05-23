@@ -34,6 +34,8 @@ Plug 'dyng/ctrlsf.vim'
 "Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'unblevable/quick-scope'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 " }}}
 " {{{ Sets
