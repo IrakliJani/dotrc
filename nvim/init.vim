@@ -68,19 +68,15 @@ let mapleader = "\<Space>"
 syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=2
 colorscheme Tomorrow\-Night
-hi Normal guibg=none
 
+hi Normal guibg=none
+hi VertSplit guibg=bg guifg=#333333
+set fillchars=vert:\│
 " }}}
 " {{{ Events
-" Automatically rebalance windows on vim resize
-au VimResized * :wincmd =
-
-" Automatically resize vertical splits.
-au WinEnter * :set winfixheight
-au WinEnter * :wincmd =
-
-" Set es6 to javascript
-au BufRead,BufNewFile *.es6 setfiletype javascript
+"au WinEnter * :set winfixheight
+"au WinEnter * :wincmd =
+"au VimResized * :wincmd =
 " }}}
 " {{{ Mappings
 " Re-select visual block after indenting + tab key will do the same
