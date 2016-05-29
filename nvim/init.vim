@@ -1,41 +1,34 @@
 " {{{ Plug
-call plug#begin("~/.rc/nvim/plugged") 
+call plug#begin("~/.rc/nvim/plugged")
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'cohama/agit.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
-"Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
-Plug 'kchmck/vim-coffee-script'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mkitt/tabline.vim'
+Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mkitt/tabline.vim'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
 Plug 'simeji/winresizer'
 Plug 't9md/vim-choosewin'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler.vim'
-Plug 'Raimondi/delimitMate'
-"Plug 'Shougo/deoplete.nvim'
-"Plug 'Yggdroot/indentLine'
-Plug 'machakann/vim-sandwich'
+Plug 'terryma/vim-multiple-cursors'
 "Plug 'justinmk/vim-sneak'
-Plug 'samuelsimoes/vim-jsx-utils'
-Plug 'dyng/ctrlsf.vim'
-"Plug 'othree/es.next.syntax.vim'
-"Plug 'othree/html5.vim'
-"Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'] }
-Plug 'evanmiller/nginx-vim-syntax'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Raimondi/delimitMate'
+Plug 'machakann/vim-sandwich'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'tommcdo/vim-lion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'kchmck/vim-coffee-script'
+"Plug 'othree/es.next.syntax.vim'
+"Plug 'othree/yajs.vim'
+"Plug 'othree/es.next.syntax.vim'
+"Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
+Plug 'samuelsimoes/vim-jsx-utils'
+"Plug 'othree/html5.vim'
+Plug 'evanmiller/nginx-vim-syntax'
+Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'javascript', 'javascript.jsx'] }
 call plug#end()
 " }}}
 " {{{ Sets
@@ -74,14 +67,9 @@ hi VertSplit guibg=bg guifg=#333333
 set fillchars=vert:\│
 " }}}
 " {{{ Events
-"au WinEnter * :set winfixheight
-"au WinEnter * :wincmd =
-"au VimResized * :wincmd =
 " }}}
 " {{{ Mappings
 " Re-select visual block after indenting + tab key will do the same
-vnoremap <Tab>   > gv
-vnoremap <S-Tab> < gv
 vnoremap >       > gv
 vnoremap <       < gv
 
@@ -103,9 +91,9 @@ nnoremap tk :tablast  <CR>
 nnoremap td :tabclose <CR>
 nnoremap tt :tabnew   <CR>
 
-" Keep search matches in the middle of the screen
-nnoremap n nzz
-nnoremap N Nzz
+ "Keep search matches in the middle of the screen
+"nnoremap n nzz
+"nnoremap N Nzz
 
 " Hidden chars
 nmap <leader>; :set list!<CR>
@@ -113,42 +101,15 @@ nmap <leader>; :set list!<CR>
 " Clear
 nmap <leader>l :nohlsearch<CR>
 
-" VimFiler
-nmap <leader>t :VimFilerExplorer<CR>
-
-" Indentation lines toggle
-nmap <leader>i :IndentLinesToggle<CR><Esc>
-
-" Indent guide 80 
-nmap <leader>g :set textwidth=80 colorcolumn=+1<CR><Esc>
-hi ColorColumn ctermbg=235
-
- "Fix tmux navigation
-nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-
-" CtrlSF mappings
-nmap     <leader>f  <Plug>CtrlSFPrompt
-vmap     <leader>f  <Plug>CtrlSFVwordPath
-nnoremap <leader>tf :CtrlSFToggle<CR>
-
+" Fix tmux navigation
+" nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 " }}}
 " {{{ Plugin Configs
-
-" Indent lines disabled by default
-let g:indentLine_enabled = 0
 
 " Gist
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
-
-" CtrlP + Ag = <3
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --hidden\ --nocolor
-
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-  let g:ctrlp_use_caching = 0
-endif
 
 " Lightline
 let g:lightline = {
@@ -172,17 +133,6 @@ let g:lightline = {
 " WinResizer
 let g:winresizer_vert_resize  = 1
 let g:winresizer_horiz_resize = 1
-
-" VimFiler
-let g:vimfiler_as_default_explorer = 1
-autocmd FileType vimfiler call s:vimfiler_my_settings()
-function! s:vimfiler_my_settings() abort "{{{
-  nnoremap <silent><buffer><expr> gt vimfiler#do_action('tabopen')
-  nmap <buffer> <Tab> <Plug>(vimfiler_switch_to_other_window)
-endfunction "}}}
-
-" Deoplete
-"let g:deoplete#enable_at_startup = 1
 
 " JSX functions
 nnoremap <leader>ja :call JSXEncloseReturn()<CR>
