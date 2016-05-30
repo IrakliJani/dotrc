@@ -101,6 +101,8 @@ nmap <leader>; :set list!<CR>
 " Clear
 nmap <leader>l :nohlsearch<CR>
 
+nmap <C-p> :FZF<CR>
+nmap <C-f> :Ag<CR>
 " Fix tmux navigation
 " nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 " }}}
