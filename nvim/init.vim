@@ -108,6 +108,9 @@ nmap <C-f> :Ag<CR>
 " }}}
 " {{{ Plugin Configs
 
+" Set Ag for FZF
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
 " Gist
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
