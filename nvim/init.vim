@@ -21,14 +21,15 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'tommcdo/vim-lion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kchmck/vim-coffee-script'
-"Plug 'othree/es.next.syntax.vim'
 "Plug 'othree/yajs.vim'
 "Plug 'othree/es.next.syntax.vim'
 "Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
-Plug 'samuelsimoes/vim-jsx-utils'
+"Plug 'samuelsimoes/vim-jsx-utils'
 "Plug 'othree/html5.vim'
+Plug 'jelera/vim-javascript-syntax'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'javascript', 'javascript.jsx'] }
+Plug 'joshdick/onedark.vim'
 call plug#end()
 " }}}
 " {{{ Sets
@@ -57,12 +58,21 @@ set clipboard=unnamed
 " {{{ General
 let mapleader = "\<Space>"
 
+let g:onedark_terminal_italics=1
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 " Theme
 syntax enable
-let $NVIM_TUI_ENABLE_TRUE_COLOR=2
-colorscheme Tomorrow\-Night
+colorscheme onedark
+"colorscheme Tomorrow\-Night
 
-hi Normal guibg=none
+"hi Normal guibg=none
 hi VertSplit guibg=bg guifg=#333333
 set fillchars=vert:\│
 " }}}
@@ -91,7 +101,7 @@ nnoremap tk :tablast  <CR>
 nnoremap td :tabclose <CR>
 nnoremap tt :tabnew   <CR>
 
- "Keep search matches in the middle of the screen
+"Keep search matches in the middle of the screen
 "nnoremap n nzz
 "nnoremap N Nzz
 
@@ -107,7 +117,6 @@ nmap <C-f> :Ag<CR>
 " nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 " }}}
 " {{{ Plugin Configs
-
 " Set Ag for FZF
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
