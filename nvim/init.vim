@@ -11,9 +11,10 @@ Plug 'simeji/winresizer'
 Plug 't9md/vim-choosewin'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'justinmk/vim-sneak'
-Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'francoiscabrol/ranger.vim' | Plug 'rbgrouleff/bclose.vim'
+Plug 'rhysd/clever-f.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
 Plug 'machakann/vim-sandwich'
@@ -80,18 +81,21 @@ set fillchars=vert:\│
 " }}}
 " {{{ Mappings
 " Re-select visual block after indenting + tab key will do the same
-vnoremap >       > gv
-vnoremap <       < gv
+vnoremap > >gv
+vnoremap < <gv
 
 " Move visual block
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
 " Reload .vimrc
-nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<cr>
+nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<CR>
 
 " Invoke with '-'
 nmap - <Plug>(choosewin)
+
+" Ranger
+nmap <C-o> :Ranger<CR>
 
 " Tab navigation
 nnoremap th :tabprev  <CR>
@@ -119,6 +123,9 @@ nmap <C-f> :Ag<CR>
 " {{{ Plugin Configs
 " Set Ag for FZF
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
+" Clever F ignore case
+let g:clever_f_ignore_case = 1
 
 " Gist
 let g:gist_clip_command = 'pbcopy'
