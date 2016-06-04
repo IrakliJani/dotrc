@@ -115,6 +115,9 @@ nmap <leader>; :set list!<CR>
 " Clear
 nmap <leader>l :nohlsearch<CR>
 
+" Toggle 80th line highlight
+nmap <leader>g :exec &colorcolumn? "se colorcolumn=" : "se colorcolumn=80"<CR>
+
 nmap <C-p> :FZF<CR>
 nmap <C-f> :Ag<CR>
 " Fix tmux navigation
