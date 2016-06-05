@@ -3,7 +3,7 @@ call plug#begin("~/.rc/nvim/plugged")
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'itchyny/lightline.vim'
-Plug 'mkitt/tabline.vim'
+Plug 'zefei/vim-wintabs'
 Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'
@@ -13,7 +13,7 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'francoiscabrol/ranger.vim' | Plug 'rbgrouleff/bclose.vim'
+Plug 'Mizuchi/vim-ranger'
 Plug 'rhysd/clever-f.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
@@ -29,6 +29,7 @@ Plug 'kchmck/vim-coffee-script'
 "Plug 'othree/html5.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'evanmiller/nginx-vim-syntax'
+Plug 'raichoo/haskell-vim'
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'javascript', 'javascript.jsx'] }
 Plug 'joshdick/onedark.vim'
 call plug#end()
@@ -39,21 +40,18 @@ set tabstop=2 shiftwidth=2 expandtab autoindent smartindent
 set cursorline
 set nowrap
 set splitbelow splitright
-set autoread
-set lazyredraw
+"set autoread
+"set lazyredraw
 set listchars=tab:▸\ ,eol:¬
-set nobackup
-set nowb
-set noswapfile
-set mouse=
-set number
-set relativenumber
-set notimeout
-set ttimeout
-set ttimeoutlen=10
+set nobackup nowritebackup noswapfile
+"set mouse=
+set number relativenumber
+"set notimeout
+"set ttimeout
+"set ttimeoutlen=10
+"set updatetime=1000
 set nojoinspaces
 set scrolloff=5
-set updatetime=1000
 set clipboard=unnamed
 " }}}
 " {{{ General
@@ -87,6 +85,9 @@ vnoremap < <gv
 " Move visual block
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
+
+" Make Y behave like other capitals
+map Y y$
 
 " Reload .vimrc
 nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<CR>
@@ -137,7 +138,7 @@ let g:gist_open_browser_after_post = 1
 
 " Lightline
 let g:lightline = {
-  \ 'colorscheme': 'Tomorrow_Night',
+  \ 'colorscheme': 'default',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
