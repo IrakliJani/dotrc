@@ -30,8 +30,10 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'raichoo/haskell-vim'
+Plug 'elmcast/elm-vim'
 Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'javascript', 'javascript.jsx'] }
 Plug 'joshdick/onedark.vim'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 " }}}
 " {{{ Sets
@@ -40,10 +42,12 @@ set tabstop=2 shiftwidth=2 expandtab autoindent smartindent
 set cursorline
 set nowrap
 set splitbelow splitright
+
 "set autoread
 "set lazyredraw
 set listchars=tab:▸\ ,eol:¬
 set nobackup nowritebackup noswapfile
+set ignorecase
 "set mouse=
 set number relativenumber
 "set notimeout
@@ -57,7 +61,7 @@ set clipboard=unnamed
 " {{{ General
 let mapleader = "\<Space>"
 
-let g:onedark_terminal_italics=1
+"let g:onedark_terminal_italics=1
 if (has("nvim"))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
@@ -68,11 +72,12 @@ endif
 
 " Theme
 syntax enable
-colorscheme onedark
-"colorscheme Tomorrow\-Night
+colorscheme base16\-default
+set background=dark
 
-"hi Normal guibg=none
+hi Normal guibg=none
 hi VertSplit guibg=bg guifg=#333333
+hi SignColumn guibg=#000000
 set fillchars=vert:\│
 " }}}
 " {{{ Events
@@ -89,6 +94,11 @@ vnoremap J :m '>+1<CR>gv=gv
 " Make Y behave like other capitals
 map Y y$
 
+" $, % and ^ are hard to press
+map 4 $
+map 5 %
+map 6 ^
+
 " Reload .vimrc
 nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<CR>
 
@@ -96,7 +106,7 @@ nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<CR>
 nmap - <Plug>(choosewin)
 
 " Ranger
-nmap <C-o> :Ranger<CR>
+nmap <C-o> :edit .<CR>
 
 " Tab navigation
 nnoremap th :tabprev  <CR>
@@ -105,6 +115,16 @@ nnoremap tj :tabfirst <CR>
 nnoremap tk :tablast  <CR>
 nnoremap td :tabclose <CR>
 nnoremap tt :tabnew   <CR>
+
+" wintabs in future
+"map <leader>th  <Plug>(wintabs_previous)
+"map <leader>tl  <Plug>(wintabs_next)
+"map <leader>tc  <Plug>(wintabs_close)
+"map <leader>to  <Plug>(wintabs_only)
+"map <leader>twc <Plug>(wintabs_close_window)
+"map <leader>two <Plug>(wintabs_only_window)
+"command! Tabc WintabsCloseVimtab
+"command! Tabo WintabsOnlyVimtab<Paste>
 
 "Keep search matches in the middle of the screen
 "nnoremap n nzz
@@ -138,7 +158,7 @@ let g:gist_open_browser_after_post = 1
 
 " Lightline
 let g:lightline = {
-  \ 'colorscheme': 'default',
+  \ 'colorscheme': 'jellybeans',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
