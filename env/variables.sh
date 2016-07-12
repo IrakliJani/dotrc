@@ -7,5 +7,5 @@ export LANG="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
 
 export EDITOR=vim
-export TERM=xterm-256color-italic
+export TERM=xterm-256color
 export FZF_DEFAULT_COMMAND='ag -g ""'

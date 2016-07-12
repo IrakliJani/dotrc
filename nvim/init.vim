@@ -2,7 +2,8 @@
 call plug#begin("~/.rc/nvim/plugged")
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 Plug 'zefei/vim-wintabs'
 Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
 Plug 'tmux-plugins/vim-tmux'
@@ -13,7 +14,7 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Mizuchi/vim-ranger'
+Plug 'francoiscabrol/ranger.vim' | Plug 'rbgrouleff/bclose.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
@@ -22,19 +23,24 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'tommcdo/vim-lion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kchmck/vim-coffee-script'
-"Plug 'othree/yajs.vim'
-"Plug 'othree/es.next.syntax.vim'
-"Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
-"Plug 'samuelsimoes/vim-jsx-utils'
-"Plug 'othree/html5.vim'
-Plug 'jelera/vim-javascript-syntax'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'raichoo/haskell-vim'
 Plug 'elmcast/elm-vim'
-Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'javascript', 'javascript.jsx'] }
-Plug 'joshdick/onedark.vim'
-Plug 'chriskempson/base16-vim'
+Plug 'lilydjwg/colorizer', { 'for': ['css', 'sass', 'scss', 'less', 'html', 'javascript', 'vim'] }
+Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
+Plug 'irakli-janiashvili/vim-wombat-scheme'
 call plug#end()
+" }}}
+" {{{ General
+let mapleader = "\<Space>"
+
+set termguicolors
+
+" Theme
+syntax enable
+colorscheme janbat
+
+" hi SignColumn guibg=#000000
 " }}}
 " {{{ Sets
 set shortmess+=I
@@ -58,28 +64,6 @@ set nojoinspaces
 set scrolloff=5
 set clipboard=unnamed
 " }}}
-" {{{ General
-let mapleader = "\<Space>"
-
-"let g:onedark_terminal_italics=1
-if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
-if (has("termguicolors"))
-  set termguicolors
-endif
-
-" Theme
-syntax enable
-colorscheme base16\-default
-set background=dark
-
-hi Normal guibg=none
-hi VertSplit guibg=bg guifg=#333333
-hi SignColumn guibg=#000000
-set fillchars=vert:\│
-" }}}
 " {{{ Events
 " }}}
 " {{{ Mappings
@@ -94,19 +78,16 @@ vnoremap J :m '>+1<CR>gv=gv
 " Make Y behave like other capitals
 map Y y$
 
-" $, % and ^ are hard to press
-map 4 $
-map 5 %
-map 6 ^
+" make * to stay
+nnoremap * *``
+"nnoremap * *N
+"nmap <silent> * :let @/='\<'.expand('<cword>').'\>'<CR>
 
 " Reload .vimrc
-nmap <Leader>r :source ~/.rc/nvim/init.vim<cr>:echomsg "rc file reloaded"<CR>
+nmap <Leader>r :source ~/.rc/nvim/init.vim<CR>:echomsg "rc file reloaded"<CR>
 
 " Invoke with '-'
 nmap - <Plug>(choosewin)
-
-" Ranger
-nmap <C-o> :edit .<CR>
 
 " Tab navigation
 nnoremap th :tabprev  <CR>
@@ -141,12 +122,16 @@ nmap <leader>g :exec &colorcolumn? "se colorcolumn=" : "se colorcolumn=80"<CR>
 
 nmap <C-p> :FZF<CR>
 nmap <C-f> :Ag<CR>
+nmap <C-o> :Ranger<CR>
 " Fix tmux navigation
-" nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
 " }}}
 " {{{ Plugin Configs
 " Set Ag for FZF
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
+" enable jsx in js docs
+let g:jsx_ext_required = 0
 
 " Clever F ignore case
 let g:clever_f_ignore_case = 1
@@ -156,48 +141,14 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 
-" Lightline
-let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-  \ },
-  \ 'component': {
-  \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-  \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-  \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-  \ },
-  \ 'component_visible_condition': {
-  \   'readonly': '(&filetype!="help"&& &readonly)',
-  \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-  \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-  \ },
-  \ }
-
 " WinResizer
 let g:winresizer_vert_resize  = 1
 let g:winresizer_horiz_resize = 1
 
-" JSX functions
-nnoremap <leader>ja :call JSXEncloseReturn()<CR>
-nnoremap <leader>ji :call JSXEachAttributeInLine()<CR>
-nnoremap <leader>je :call JSXExtractPartialPrompt()<CR>
-nnoremap vat :call JSXSelectTag()<CR>
+" ChooseWin overlay
+let g:choosewin_overlay_enable = 1
 " }}}
 " Functions {{{
-
-fun! Light()
-  colorscheme Tomorrow
-endfunction
-
-fun! Dark()
-  colorscheme Tomorrow\-Night
-endfunction
-
-command! Light call Light()
-command! Dark call Dark()
-
 " }}}
 
 " vim: set foldmethod=marker:
