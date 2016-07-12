@@ -78,11 +78,6 @@ vnoremap J :m '>+1<CR>gv=gv
 " Make Y behave like other capitals
 map Y y$
 
-" make * to stay
-nnoremap * *``
-"nnoremap * *N
-"nmap <silent> * :let @/='\<'.expand('<cword>').'\>'<CR>
-
 " Reload .vimrc
 nmap <Leader>r :source ~/.rc/nvim/init.vim<CR>:echomsg "rc file reloaded"<CR>
 
@@ -97,19 +92,14 @@ nnoremap tk :tablast  <CR>
 nnoremap td :tabclose <CR>
 nnoremap tt :tabnew   <CR>
 
-" wintabs in future
-"map <leader>th  <Plug>(wintabs_previous)
-"map <leader>tl  <Plug>(wintabs_next)
-"map <leader>tc  <Plug>(wintabs_close)
-"map <leader>to  <Plug>(wintabs_only)
-"map <leader>twc <Plug>(wintabs_close_window)
-"map <leader>two <Plug>(wintabs_only_window)
-"command! Tabc WintabsCloseVimtab
-"command! Tabo WintabsOnlyVimtab<Paste>
+" Wintabs mappings
+nnoremap <S-l> :WintabsNext     <CR>
+nnoremap <S-h> :WintabsPrevious <CR>
+nnoremap <S-c> :WintabsClose    <CR>
 
-"Keep search matches in the middle of the screen
-"nnoremap n nzz
-"nnoremap N Nzz
+" Search in the middle
+nnoremap n nzz
+nnoremap N Nzz
 
 " Hidden chars
 nmap <leader>; :set list!<CR>
@@ -120,11 +110,10 @@ nmap <leader>l :nohlsearch<CR>
 " Toggle 80th line highlight
 nmap <leader>g :exec &colorcolumn? "se colorcolumn=" : "se colorcolumn=80"<CR>
 
+" FZF and Ranger
 nmap <C-p> :FZF<CR>
 nmap <C-f> :Ag<CR>
 nmap <C-o> :Ranger<CR>
-" Fix tmux navigation
-" nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
 " }}}
 " {{{ Plugin Configs
 " Set Ag for FZF
