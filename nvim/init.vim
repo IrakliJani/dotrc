@@ -136,6 +136,11 @@ let g:winresizer_horiz_resize = 1
 
 " ChooseWin overlay
 let g:choosewin_overlay_enable = 1
+
+" Wintabs config
+let g:wintabs_ui_sep_leftmost  = ' '
+let g:wintabs_ui_sep_inbetween = '│'
+let g:wintabs_ui_sep_rightmost = ' '
 " }}}
 " Functions {{{
 " }}}
